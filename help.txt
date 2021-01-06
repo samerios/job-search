@@ -1,0 +1,26 @@
+Hebrew:
+פרויקט פיתוח מערכת חיפוש עבודה במערכת ישנם שני סוג
+י משתמשים משתמש רגיל ואדמין המערכת תומכת בשליחת מיילים האתר הוא רס
+פונסיבי (מותאם לדסקטופ וללפטופ)
+ JAVASCRIPT (NodeJS,JQuery,Angular,JSON), ASP CLASIC, MySqL שימוש בשפות
+-------------------------------------------------------------------------------------
+English:
+Project Development "System Job Search", In the system there are two types of
+Users, Regular user and admin, The system supports sending emails, The site is responsive (optimized for desktop and laptop),
+languages JAVASCRIPT (NodeJS, JQuery, Angular, JSON), ASP CLASIC, MySqL 
+
+----------------------------------------------------------------------------------------
+upload MYSQL file to localhost server and
+run from CMD:
+
+for admin type:
+-------------------
+cd (folder path)
+node adminApp.js
+-------------------
+
+for user type:
+-------------------
+cd (folder path)
+node app.js
+-------------------

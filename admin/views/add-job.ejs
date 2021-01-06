@@ -1,0 +1,101 @@
+<% include partials/header.ejs %>
+    <div class="container">
+        <% if (message != '') { %>
+            <p class="text-center text-danger"><%= message %></p>
+        <% } %>
+        <form class="add-job-form" action="" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="jobName" id="jobName" placeholder="שם משרה" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="date" data-date="" data-date-format="YYYY MMMM DD" class="form-control" name="datee" id="datee" placeholder="תאריך פרסום" required>
+                </div>
+                
+				<div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="emp" id="emp" placeholder="מעסיק" required>
+                </div>
+				<div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="address" id="address" placeholder="מיקום משרה" required>
+                </div>
+				<div class="form-group col-md-4">
+                    <textarea type="text" class="form-control" name="description" id="description" placeholder="תיאור משרה" minlength=15 maxlength="1024" style="width: 290px; height: 80px; resize: none" required></textarea>
+                </div>
+				<div class="form-group col-md-4">
+                    <textarea type="text" class="form-control" name="requi" id="requi" placeholder="דרישות" minlength=15 maxlength="1024" style="width: 290px; height: 80px; resize: none" required></textarea>
+                </div>
+				
+				<div class="form-group col-md-4">
+                    <input type="text" class="form-control" name="email" id="email" placeholder="מייל לשליחת קורות חיים" required>
+                </div>
+				
+				
+				
+				
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" name="number" id="number" placeholder="מספר משרה" required>
+                </div>
+                
+				
+				
+				<div class="form-group col-md-6">
+					<select id="wheree" name="wheree" class="form-control" required>
+                        <option disabled>--אזור--</option>
+                        <option>תל-אביב והמרכז</option>
+                        <option>חיפה והקריות</option>
+                        <option>השרון</option>
+						<option>באר-שבע והדרום</option>
+						<option>הגליל המערבי</option>
+						<option>הגליל העליון</option>
+						<option>הגולן</option>
+                    </select>
+                </div>
+				
+				<div class="form-group col-md-6">
+					<select id="what" name="what" class="form-control" required>
+                        <option disabled>--תחום--</option>
+                        <option>תוכנה</option>
+                        <option>חומרה</option>
+                        <option>ייצור</option>
+						<option>עבודה מהבית</option>
+						<option>מלונות</option>
+                    </select>
+                </div>
+				
+				
+				
+				
+				<div class="form-group col-md-6">
+					<select id="type" name="type" class="form-control" required>
+                        <option disabled>--היקף--</option>
+                        <option>משרה מלאה</option>
+                        <option>משרה חלקית</option>
+                        <option>משרה מלאה/משמרות</option>
+						<option>עבודה מהבית</option>
+						<option>פלילנסר</option>
+                    </select>
+                </div>
+				
+				<div class="form-group col-md-6">
+                    <select id="statuss" name="statuss" class="form-control" required>
+                        <option selected disabled>בחר סטטוס</option>
+                        <option>פעיל</option>
+                        <option>לא פעיל</option>
+                        
+                    </select>
+                </div>
+				
+				
+                <div class="col-md-12">
+                    <label for="job-img"><b>תמונת משרה</b></label><br>
+                    <input type="file" name="image" id="job-img" class="" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary float-right">הוסף משרה</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

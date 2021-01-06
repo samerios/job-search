@@ -1,0 +1,71 @@
+<%- include('partials/header'); %>
+
+
+	  
+<div align="right">
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; תפריט</span>
+		<div>
+		 <h1><font  face="david" size="10" color="#f4511e">כנעאן כח אדם</font></h1>
+		 <p>חברת כח אדם שמגייסת עובדים בכל התחומים השאר קורות חיים ונחזור לך בהקדם האפשרי</p>
+		</div>
+</div>
+
+
+<span class="text-danger" style="color:green;font-size:20px;">
+        <% if (message != '' && message=="קורות החיים נשלחו בהצלחה") { %>
+            <%= message %>
+        <% } %>
+ </span>
+
+<% if (typeof user === 'undefined'|| user.length == 0) {%>
+	  
+	  
+<div id="home" ng-app="myApp" ng-controller="myCtrl">
+<button ng-click="myFunc()" id="cvBtn" style="vertical-align:middle"><span> שלח קורות חיים </span></button>
+
+<div ng-show="showMe" >
+
+    <form  name="myForm" id="sendForm" method="post" action="/sendMyCvForSystem" enctype="multipart/form-data">
+       <p>שם מלא:<input name="myName" ng-model="myName" size="35" required></p>
+       <p>אימייל  :<input type="email" name="myAddress" ng-model="myAddress" size="35" required><span ng-show="myForm.myAddress.$error.email" class="text-danger">כתובת מייל לא חוקית</span></p>
+	   
+       <p>קובץ קורות חיים .doc|.docx<input type="file" name="cv" required /></p>
+
+	   <p>מכתב מקדים<textarea name="mech" style="width: 300px; height: 50px; resize: none "></textarea></p>
+       <input type="submit" class="btnSubmit" value="שלח">
+
+       <span class="text-danger">
+        <% if (message != '' && message=="קובץ וורד בלבד") { %>
+            <%= message %>
+        <% } %>
+        </span>
+
+        
+
+
+      </form>
+</div>
+</div>
+
+ <% }  %>
+
+
+
+<script>
+var appp = angular.module('myApp', []);
+appp.controller('myCtrl', function($scope) {
+    $scope.showMe = false;
+    $scope.myFunc = function() {
+        $scope.showMe = !$scope.showMe;
+    }
+});
+
+angular.bootstrap(document.getElementById('home'),['myApp']);
+
+</script>
+	  
+
+
+
+
+<%- include('partials/footer'); %>

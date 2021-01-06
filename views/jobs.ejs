@@ -1,0 +1,257 @@
+<%- include('partials/header'); %>
+
+        <% if (message == '') { %>
+            <p ><%= message %></p>
+        <% } %>
+
+  
+<image src="/assets/img/job.jpg" width="0" height="0" onload="change(<%= message %>)"/>
+ 
+ 
+ 
+ 
+ 
+<div align="right">
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; תפריט</span>
+		<div>
+		 <h1><font  face="david" size="10" color="#f4511e">כנעאן כח אדם</font></h1>
+		 <p>חברת כח אדם שמגייסת עובדים בכל התחומים השאר קורות חיים ונחזור לך בהקדם האפשרי</p>
+		</div>
+</div>
+
+
+
+
+
+
+
+<div class="divProp">
+<form action="/jobs/1" method="post" >
+<span>
+<select id="what" name="what" required>
+<option value="">--בחר תחום--</option>
+<option >תוכנה</option>
+<option>חומרה</option>
+<option>ייצור</option>
+<option>עבודה מהבית</option>
+<option>מלונות</option>                    
+</select>
+</span>
+
+<span>
+<select id="where" name="where" required>
+<option value="">--בחר מיקום--</option>
+<option>תל-אביב והמרכז</option>
+<option>חיפה והקריות</option>
+<option>השרון</option>
+<option>באר-שבע והדרום</option>
+<option>הגליל המערבי</option>
+<option>הגליל העליון</option>
+<option>הגולן</option>                  
+</select>
+</span>
+
+<span>
+<select id="how" name="how" required>
+<option value="">--בחר סוג משרה--</option>
+<option>משרה מלאה</option>
+<option>משרה חלקית</option>
+<option>משרה מלאה/משמרות</option>
+<option>עבודה מהבית</option>
+<option>פלילנסר</option>                    
+</select>
+</span>
+
+<span><button type="submit" style="width:5%;background-color: #f4511e;border-radius: 4px;border: none;"><span>>></span></button></span>
+</form>
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script> $(function() {
+    $('#what').change(function() {
+        localStorage.setItem('w', this.value);
+    });
+    if(localStorage.getItem('w')){
+        $('#what').val(localStorage.getItem('w'));
+    }
+});
+
+
+$(function() {
+    $('#where').change(function() {
+        localStorage.setItem('wr', this.value);
+    });
+    if(localStorage.getItem('wr')){
+        $('#where').val(localStorage.getItem('wr'));
+    }
+});
+
+$(function() {
+    $('#how').change(function() {
+        localStorage.setItem('hw', this.value);
+    });
+    if(localStorage.getItem('hw')){
+        $('#how').val(localStorage.getItem('hw'));
+    }
+});
+</script>
+ 
+
+
+<% if (jobs.length > 0) {%>
+<% jobs.forEach((job, index) => { %>
+  <div class="all">
+
+<% if (sentJobs.length > 0) {  %>
+ <%Dim =disable=0 %>
+<% sentJobs.forEach((chJob, i) => { %>
+
+<% if (chJob.job_id==job.id) {%>
+    <div class="date" style="float:right;color:green"><strong>שלחת קורות חיים למשרה בתאריך</strong><%= chJob.sendate %></div>
+     <%disable=1 %>
+<% } %>
+
+<% })} else if(typeof user!=='undefined' && sentJobs.length==0){ %>
+
+<%Dim =disable='' %>
+
+<% }else { %>
+
+<%Dim =disable='logoutUser' %>
+<% } %>
+
+
+  <div class="date"><strong>פורסם בתאריך :</strong><%= job.datee %></div>
+  <div class="headers"><strong>שם :</strong><%= job.namee %></div><br>
+	<image class="jobImage" src="/assets/img/<%= job.img %>"/>
+	<div class="headers"><strong>מעסיק :</strong><%= job.emp %></div><br>
+	<div class="headers"><strong>מיקום משרה :</strong><%= job.address %></div><br>
+	<div class="headers"><strong>היקף משרה :</strong><%= job.typee %></div><br>
+	<p class="headers"><strong>תיאור :</strong><%= job.description %></p><br>
+	<p class="headers"><strong>דרישות :</strong><%= job.req %></p><br>
+  <% if ((sentJobs.length > 0 && disable==0) || disable=='') {%>
+	<a href="/jobs/<%=message%>/<%=job.id %>" ><button class="sendCvSpecjob" ><span>הגש מועמדות</span></button></a>
+  <% } else if(sentJobs.length > 0 && disable==1){ %>
+  <button class="sendCvSpecjob" onclick="alreadySendMsg()"><span>הגש מועמדות</span></button>
+
+  <% } else { %>
+  <button class="sendCvSpecjob" onclick="loginMsg()"><span>הגש מועמדות</span></button>
+  <% } %>
+
+
+ </div>
+<% })} else { %>
+ 
+<h1 ><strong>לא נמצאו תוצאות</strong></h1><br>
+<% } %>
+
+   
+
+<br>
+<div class="pagination">
+  <% if (alll > 5) { %>
+  
+  <% if (message==1 ) { %>
+  <a href="/jobs/1" onclick="prev()">&raquo;</a>
+  <% } else { %>
+  <a href="/jobs/<%= message-1 %>" onclick="prev()">&raquo;</a>
+  <% } %>
+  
+  <a href="/jobs/<%= 1 %>" class="active" id="1" onclick="change(id)">1</a>
+  
+  <% for(var i=2; i<(alll/5)+1; i++) {%>
+	<a href="/jobs/<%= i %>" id="<%= i %>" onclick="change(id)"><%= i %></a>
+  <% } %>
+  
+  
+  <% if (message== parseInt((alll/5)+1)) { %>
+  <a href="/jobs/<%= message %>" onclick="next()">&laquo;</a>
+  <% } else { %>
+  <a href="/jobs/<%= ++message %>" onclick="next()">&laquo;</a>
+  <% } %>
+  
+  <% } %>
+</div>
+<br>
+<script>
+
+function change(s) {
+ 
+ var c ='<%=(alll/5)+1%>';
+
+  for(var a=1;a<c;a++)
+  {
+	if(a==s) document.getElementById(s).classList.add('active');
+	else document.getElementById(a).classList.remove('active');
+  }
+  
+}
+
+
+
+function next() {
+ 
+ var c ='<%=(alll/5)+1%>';
+  for(var a=1;a<c;a++)
+  {
+	if ( document.getElementById(a).classList.contains('active') )
+	{
+		document.getElementById(a).classList.remove('active');
+		document.getElementById(a+1).classList.add('active');
+		
+		break;
+	}
+  }
+  
+}
+
+
+function prev() {
+ 
+ var c ='<%=(alll/5)+1%>';
+  for(var a=c;a>1;a--)
+  {
+	if ( document.getElementById(a).classList.contains('active') )
+	{
+		document.getElementById(a).classList.remove('active');
+		document.getElementById(a-1).classList.add('active');
+		
+		break;
+	}
+  }
+  
+}
+
+
+
+
+function loginMsg()
+{
+    alert("עליך להתחבר על מנת להגיש מועמדות");
+}
+
+function alreadySendMsg()
+{
+    alert("כבר הגשת מועמדות למשרה זו");
+}
+
+</script>
+
+
+
+
+
+
+
+<div class="copyright-container" style=" position: relative;">
+  <div class="vert-align">
+    <p class="headline">
+      Copyright &copy; 2020 Samer Kinaan - All Rights Reserved.</p>
+  </div>
+</div>
+  
+</body>
+</html>

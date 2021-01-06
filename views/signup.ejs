@@ -1,0 +1,55 @@
+<%- include('partials/header'); %>
+
+
+  
+	  
+<div align="right">
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; תפריט</span>
+		<div>
+		 <h1><font  face="david" size="10" color="#f4511e">כנעאן כח אדם</font></h1>
+		 <p>חברת כח אדם שמגייסת עובדים בכל התחומים השאר קורות חיים ונחזור לך בהקדם האפשרי</p>
+		</div>
+</div>
+
+ 
+	  
+<div id="signup"  ng-app="signupApp" ng-controller="signupFormCntl">
+<div>
+    <form  name="signupFormm" id="sendForm" style="height: 240px;" action="" method="post" enctype="multipart/form-data">
+       <p>שם פרטי<input name="signupFName" ng-model="signupFName" size="35" required></p>
+       <p>שם משפחה<input name="signupLName" ng-model="signupLName" size="32" required></p>
+       
+       <p>אימייל  :<input type="email" name="signupEmail" ng-model="signupEmail" size="35" required><span ng-show="signupFormm.signupEmail.$error.email" class="text-danger">כתובת מייל לא חוקית</span></p>
+	   
+	    <p>סיסמה  :<input type="password" name="signupPass" ng-model="signupPass" size="35" required></p>
+	    
+       <p>קובץ קורות חיים .doc|.docx<input name="signupCv" type="file"  required ></p>
+       
+        <span class="text-danger">
+        <% if (message != '') { %>
+            <p class="text-center text-danger"><%= message %></p>
+        <% } %>
+        </span>
+	   
+
+      <button type="submit" class="btnSubmit">שלח</button>
+
+      </form>
+</div>
+</div>
+
+<script>
+var signupAppp = angular.module('signupApp', []);
+signupAppp.controller('signupFormCntl', function($scope) {
+    
+});
+
+angular.bootstrap(document.getElementById('signup'),['signupApp']);
+
+
+
+
+</script>
+	  
+ 
+<%- include('partials/footer'); %>

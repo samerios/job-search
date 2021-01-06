@@ -1,0 +1,51 @@
+<% include partials/header.ejs %>
+    <div class="table-wrapper">
+        <% if (jobs.length > 0) {%>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">מזהה משרה</th>
+                        <th scope="col">תמונה</th>
+                        <th scope="col">שם משרה</th>
+                        <th scope="col">תאריך פרסום</th>
+                        <th scope="col">היקף משרה</th>
+                        <th scope="col">מעסיק</th>
+                        <th scope="col">מיקום</th>
+                        <th scope="col">תיאור</th>
+						
+						<th scope="col">דרישות</th>
+                        <th scope="col">מייל</th>
+						<th scope="col">סטטוס</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% jobs.forEach((job, index) => { %>
+                        <tr>
+                            <th scope="row"><%= job.id %></th>
+                            <td><img src="/assets/img/<%= job.img %>" class="rounded-circle job-img" alt=""></td>
+                            <td><%= job.namee %></td>
+                            <td><%= job.datee %></td>
+                            <td><%= job.typee %></td>
+                            <td><%= job.emp %></td>
+                            <td><%= job.address %></td>
+							
+							<td><textarea readonly style="width: 100px; height: 80px; resize: none"><%= job.description %></textarea></td>
+                            <td><textarea readonly style="width: 100px; height: 80px; resize: none"><%= job.req %></textarea></td>
+                            <td><%= job.email %></td>
+                            <td><%= job.status %></td>
+							
+                            <td>
+                                <a href="/edit/<%= job.id %>"  rel="noopener" class="btn btn-sm btn-success">עריכה</a>
+                                <a href="/delete/<%= job.id %>" class="btn btn-sm btn-danger">מחיקה</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">לא נמצאו משרות <a href="/add" >לחץ כאן</a> להוספה.</p>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<% include partials/header.ejs %>
+<div class="container">
+    <% if (message) { %>
+        <p class="text-center text-danger"><%= message %></p>
+    <% } %>
+
+    <% if (job) { %>
+        <form class="add-job-form" action="" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="jobName">שם משרה</label>
+                    <input type="text" class="form-control" name="jobName" id="jobName" value="<%= job.namee %>" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="datee">תאריך</label>
+                    <input type="date" data-date="" data-date-format="YYYY MMMM DD" class="form-control" name="datee" id="datee" value="<%= job.datee %>" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="jobnumber">מספר משרה</label>
+                    <input type="text" class="form-control" name="jobnumber" id="jobnumber" value="<%= job.jobnumber %>" required disabled title="לא ניתן לשנות מספר משרה">
+                </div>				
+				 			
+				 <div class="form-group col-md-4">
+                    <label for="emp">שם מעסיק</label>
+                    <input type="text" class="form-control" name="emp" id="emp" value="<%= job.emp %>" required>
+                </div>
+				 <div class="form-group col-md-4">
+                    <label for="address">מיקום משרה</label>
+                    <input type="text" class="form-control" name="address" id="address" value="<%= job.address %>" required>
+                </div>
+				
+				
+				 <div class="form-group col-md-4">
+                    <label for="description">תיאור</label>
+                    <textarea type="text" class="form-control" name="description" id="description" minlength=15 maxlength="1024" style="width: 290px; height: 120px; resize: none" required><%= job.description %></textarea>
+                </div>
+				
+				<div class="form-group col-md-4">
+                    <label for="requi">דרישות</label>
+                    <textarea type="text" class="form-control" name="requi" id="requi" minlength=15 maxlength="1024" style="width: 290px; height: 120px; resize: none" required><%= job.req %></textarea>
+                </div>
+				
+				 <div class="form-group col-md-4">
+                    <label for="email">מייל</label>
+                    <input type="email" class="form-control" name="email" id="email" value="<%= job.email %>" required>
+                </div>
+				
+				
+            </div>
+            <div class="form-row">
+                
+                
+				
+				
+				<div class="form-group col-md-6">
+                    <label for="wheree">אזור</label>
+					<select id="wheree" name="wheree" class="form-control" required>
+                        <option disabled><%= job.wheree %></option>
+                        <option>תל-אביב והמרכז</option>
+                        <option>חיפה והקריות</option>
+                        <option>השרון</option>
+						<option>באר-שבע והדרום</option>
+						<option>הגליל המערבי</option>
+						<option>הגליל העליון</option>
+						<option>הגולן</option>
+                    </select>
+                </div>
+				
+				
+				<div class="form-group col-md-6">
+                    <label for="what">תחום</label>
+					<select id="what" name="what" class="form-control" required>
+                        <option disabled><%= job.what %></option>
+                        <option>תוכנה</option>
+                        <option>חומרה</option>
+                        <option>ייצור</option>
+						<option>עבודה מהבית</option>
+						<option>מלונות</option>
+                    </select>
+                </div>
+				
+				
+				
+				<div class="form-group col-md-6">
+                    <label for="type">היקף המשרה</label>
+					<select id="type" name="type" class="form-control" required>
+                        <option disabled><%= job.typee %></option>
+                        <option>משרה מלאה</option>
+                        <option>משרה חלקית</option>
+                        <option>משרה מלאה/משמרות</option>
+						<option>עבודה מהבית</option>
+						<option>פלילנסר</option>
+                    </select>
+                </div>
+				
+				
+				<div class="form-group col-md-6">
+                    <label for="statuss">סטטוס</label>
+                    <select id="statuss" name="statuss" class="form-control" required>
+                        <option selected>פעיל</option>
+                        <option>לא פעיל</option>
+                        
+                    </select>
+                </div>
+				
+				
+            </div>
+            <button type="submit" class="btn btn-success float-right">עדכן משרה</button>
+        </form>
+    <% } else { %>
+        <p class="text-center">משרה לא קיימת <a href="/add">לחץ כאן</a> להוספת משרה.</p>
+    <% } %>
+</div>
+</div>
+</body>
+</html>
